@@ -1,0 +1,29 @@
+# Build results
+bin/
+obj/
+*.exe
+*.dll
+
+# User-specific files
+*.user
+*.suo
+
+# VS Code
+.vscode/
+
+# Rider
+.idea/
+
+# Visual Studio
+*.vs/
+
+# Logs
+*.log
+
+# SQL Server localdb
+*.mdf
+*.ldf
+
+# System files
+Thumbs.db
+.DS_Store
