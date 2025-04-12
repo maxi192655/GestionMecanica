@@ -12,6 +12,6 @@ namespace GestionMecanica.Core
         public string Nombre { get; set; }
         public string Email { get; set; }
         public Especialidad Especialidad { get; set; }
-        public List<Orden_Mecanico> OrdenesMecanicos { get; set; } = new();
+        public List<OrdenMecanico> OrdenesMecanicos { get; set; } = new();
     }
 }

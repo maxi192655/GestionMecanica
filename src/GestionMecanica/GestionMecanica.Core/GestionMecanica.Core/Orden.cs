@@ -14,6 +14,6 @@ namespace GestionMecanica.Core
         public Estado Estado { get; set; } = Estado.Pendiente;
         public DetalleOrden Detalle { get; set; }
         public Reparacion Reparacion { get; set; }
-        public List<Orden_Mecanico> OrdenesMecanicos { get; set; } = new();
+        public List<OrdenMecanico> OrdenesMecanicos { get; set; } = new();
     }
 }
