@@ -9,7 +9,7 @@ namespace GestionMecanica.Core
     public class Modelo
     {
         public int Id { get; set; }
-        public string Nombre { get; set; }
-        public Marca Marca { get; set; }
+        public string Nombre { get; set; } // Nombre del modelo
+        public Marca Marca { get; set; } //Relacion con la marca
     }
 }

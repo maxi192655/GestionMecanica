@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GestionMecanica.Core
 {
-    public class Orden_Mecanico
+    public class OrdenMecanico
     {
         public int OrdenId { get; set; }
         public Orden Orden { get; set; }

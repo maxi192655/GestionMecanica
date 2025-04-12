@@ -10,6 +10,7 @@ namespace GestionMecanica.Core
     {
         Pendiente = 0,
         Iniciado = 1,
-        Finalizado = 2
+        Finalizado = 2,
+        cancelada   
     }
 }
