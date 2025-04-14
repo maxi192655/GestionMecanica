@@ -1,10 +1,11 @@
-﻿using System;
+﻿using GestionMecanica.Core.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GestionMecanica.Core
+namespace GestionMecanica.Core.Entidades
 {
     public class Modelo : IValidable
     {

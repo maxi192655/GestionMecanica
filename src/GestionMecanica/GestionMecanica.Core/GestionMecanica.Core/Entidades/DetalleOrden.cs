@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GestionMecanica.Core
+namespace GestionMecanica.Core.Entidades
 {
-    public class Factura
+    public class DetalleOrden
     {
         public int Id { get; set; }
+        public Repuesto Repuesto { get; set; }
+        public int Cantidad { get; set; }
+        public decimal SubTotal { get; set; }
         public Orden Orden { get; set; }
-        public decimal Total { get; set; }
-        public DateTime FEmision { get; set; }
-        public Estado Estado { get; set; } = Estado.Pendiente;
+
     }
 }

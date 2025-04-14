@@ -1,22 +1,27 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using GestionMecanica.Core.Interface;
+using System.ComponentModel.DataAnnotations;
 
-namespace GestionMecanica.Core
+namespace GestionMecanica.Core.Entidades
 {
-    public class Cliente : IValidable
+    public abstract class Usuario : IValidable
     {
+        //TODO
+
         public int Id { get; set; }
 
         public string Nombre { get; set; }
 
         public string Email { get; set; }
-        public string Telefono { get; set; }
-        public List<Vehiculo> _Vehiculos { get; set; } = new();
 
-        public void Validar()
+        public string Pwd { get; set; }
+
+        public virtual string Rol => GetType().Name;
+
+        public virtual void Validar()
         {
             ValidarNombre();
             ValidarEmail();
-            ValidarTelefono();
+            ValidarPwd();
         }
 
         private void ValidarNombre()
@@ -35,10 +40,12 @@ namespace GestionMecanica.Core
             }
         }
 
-        private void ValidarTelefono()
+        private void ValidarPwd()
         {
-            if (string.IsNullOrWhiteSpace(Telefono))
-                throw new Exception("El telefono del cliente no puede estar vació");
+            if (string.IsNullOrWhiteSpace(Pwd))
+            {
+                throw new Exception("La contraseña del cliente no puede estar vacia");
+            }
         }
     }
 }
