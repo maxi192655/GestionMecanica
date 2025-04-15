@@ -17,6 +17,20 @@ namespace GestionMecanica.Core.Entidades
 
         public virtual string Rol => GetType().Name;
 
+
+
+        protected Usuario()
+        {
+            
+        }
+
+        protected Usuario(string nombre, string email, string pwd)
+        {
+            Nombre = nombre;
+            Email = email;
+            Pwd = pwd;
+        }
+
         public virtual void Validar()
         {
             ValidarNombre();

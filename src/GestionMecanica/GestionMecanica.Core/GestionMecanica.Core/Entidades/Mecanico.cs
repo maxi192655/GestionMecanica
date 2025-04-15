@@ -8,9 +8,24 @@ namespace GestionMecanica.Core.Entidades
 {
     public class Mecanico : Usuario
     {
-        //TODO
-        public int Id { get; set; }
+        public override string Rol => "Mecanico";
+
         public Especialidad Especialidad { get; set; }
         public List<OrdenMecanico> OrdenesMecanicos { get; set; } = new();
+
+        public override void Validar()
+        {
+            base.Validar();
+            
+            ValidarEspecialidad();
+        }
+
+        private void ValidarEspecialidad()
+        {
+            if (Especialidad == null)
+            {
+                throw new Exception("La especialidad del mecanico no puede estar vacia");
+            }
+        }
     }
 }

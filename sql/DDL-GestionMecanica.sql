@@ -50,6 +50,7 @@ CREATE TABLE Usuario (
 	
 	CONSTRAINT PK_Usuario PRIMARY KEY (ID)
 	CONSTRAINT FK_Usuarios_Roles FOREIGN KEY (Rol) REFERENCES Roles(Nombre),
+	CONSTRAINT chk_rol CHECK (Rol IN ('Cliente', 'Administrador', 'Mecanico')),
 	CONSTRAINT FK_Especialidad_Mecanico FOREIGN KEY (EspecialidadID) REFERENCES Especialidad(ID),
 );
 GO

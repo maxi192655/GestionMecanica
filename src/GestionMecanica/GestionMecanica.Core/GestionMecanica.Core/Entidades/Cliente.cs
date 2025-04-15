@@ -9,6 +9,8 @@ namespace GestionMecanica.Core.Entidades
     public class Cliente : Usuario
     {
         //TODO
+        public override string Rol => "Cliente";
+
 
         public string Telefono { get; set; }
         public string Direccion { get; set; }
@@ -18,7 +20,27 @@ namespace GestionMecanica.Core.Entidades
         public string Pais { get; set; }
 
         public List<Vehiculo> _Vehiculos { get; set; } = new();
-        
+
+        #region Constructores
+        public Cliente()
+        {   
+        }
+
+        public Cliente(string nombre, string email, string pwd, string telefono, string direccion, string ciudad, string estado, string codigoPostal, string pais) : base(nombre, email, pwd)
+        {
+            Telefono = telefono;
+            Direccion = direccion;
+            Ciudad = ciudad;
+            Estado = estado;
+            CodigoPostal = codigoPostal;
+            Pais = pais;
+        }
+
+        //TODO
+        //public override string Rol => "Cliente";
+        #endregion
+        #region Validaciones
+        //Validaciones
         public override void Validar()
         {
             base.Validar();
@@ -59,6 +81,7 @@ namespace GestionMecanica.Core.Entidades
             if (string.IsNullOrWhiteSpace(Pais))
                 throw new Exception("El pais del cliente no puede estar vacio");
         }
+        #endregion
     }
 }
 
