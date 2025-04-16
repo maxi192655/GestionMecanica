@@ -12,13 +12,14 @@ CREATE TABLE Especialidad(
 		ID int IDENTITY(1,1) NOT NULL,
 		Nombre varchar(100) NOT NULL,
 		CONSTRAINT PK_Especialidad PRIMARY KEY (ID)
-
 );
 GO
 
 CREATE TABLE Roles (
-	Nombre NVARCHAR(20),
-	CONSTRAINT Pk_Rol PRIMARY KEY(Nombre)
+	--Roles
+	id INT IDENTITY(1,1) NOT NULL,
+	Nombre NVARCHAR(20) NOT NULL UNIQUE,
+	CONSTRAINT Pk_Rol PRIMARY KEY(id)
 );
 GO
 
@@ -28,7 +29,7 @@ CREATE TABLE Usuario (
 	Nombre VARCHAR(100) NOT NULL,
 	Email VARCHAR(100) NOT NULL UNIQUE,
 	Pwd VARCHAR(100)NOT NULL,
-	Rol NVARCHAR(20) NOT NULL,
+	RolID int NOT NULL,
 
 	--Cliente
 	Telefono NVARCHAR(20) NULL,
@@ -45,11 +46,11 @@ CREATE TABLE Usuario (
 	EspecialidadID INT Null,
 
 	--Extras
-	Activo BIT DEFAULT 1,
+	Activo BIT NOT NULL DEFAULT 1,
 	FechaRegistro DATETIME DEFAULT GETDATE()
 	
 	CONSTRAINT PK_Usuario PRIMARY KEY (ID)
-	CONSTRAINT FK_Usuarios_Roles FOREIGN KEY (Rol) REFERENCES Roles(Nombre),
+	CONSTRAINT FK_Usuarios_Roles FOREIGN KEY (RolID) REFERENCES Roles(Id),
 	CONSTRAINT chk_rol CHECK (Rol IN ('Cliente', 'Administrador', 'Mecanico')),
 	CONSTRAINT FK_Especialidad_Mecanico FOREIGN KEY (EspecialidadID) REFERENCES Especialidad(ID),
 );
