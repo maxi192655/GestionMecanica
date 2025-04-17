@@ -10,7 +10,7 @@ USE GestionMecanica;
 
 CREATE TABLE Especialidad(
 		ID int IDENTITY(1,1) NOT NULL,
-		Nombre varchar(100) NOT NULL,
+		Nombre varchar(100) NOT NULL UNIQUE,
 		CONSTRAINT PK_Especialidad PRIMARY KEY (ID)
 );
 GO

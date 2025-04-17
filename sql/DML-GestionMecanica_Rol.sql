@@ -1,17 +1,26 @@
 ﻿USE GestionMecanica;
 GO
-
 INSERT INTO Roles(Nombre)
 VALUES(
-	"Administrador"
-);
+	("Administrador"),("Mecanico"),("Cliente")
+	);
+GO
+--Crear un nuevo rol
+CREATE PROCEDURE Sp_Roles_Create
+	@Nombre NVARCHAR(20)
+AS
+BEGIN
+	INSERT INTO Roles(Nombre)
+	VALUES(@Nombre);
+END;
+GO
 
-INSERT INTO Roles(Nombre)
-VALUES(
-	"Mecanico"
-);
-
-INSERT INTO Roles(Nombre)
-VALUES(
-	"Cliente"
-);
+CREATE PROCEDURE Sp_Roles_Delete
+	@ID INT,
+	@Nombre NVARCHAR(20)
+AS
+BEGIN
+	DELETE FROM Roles
+	WHERE ID = @ID;
+END;
+GO
