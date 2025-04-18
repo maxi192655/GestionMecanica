@@ -8,11 +8,21 @@ namespace GestionMecanica.Core.Entidades
 {
     public class Mecanico : Usuario
     {
+        public Mecanico()
+        {
+        }
+
+        public Mecanico(string nombre, string email, string pwd, Especialidad especialidad) : base(nombre, email, pwd)
+        {
+            Validar();
+        }
+
         public override string Rol => "Mecanico";
 
         public Especialidad Especialidad { get; set; }
         public List<OrdenMecanico> OrdenesMecanicos { get; set; } = new();
 
+        
         public override void Validar()
         {
             base.Validar();

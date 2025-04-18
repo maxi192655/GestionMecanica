@@ -22,9 +22,9 @@ namespace GestionMecanica.Core.Entidades
         public List<Vehiculo> _Vehiculos { get; set; } = new();
 
         #region Constructores
-        public Cliente()
-        {   
-        }
+        //public Cliente()
+        //{   
+        //}
 
         public Cliente(string nombre, string email, string pwd, string telefono, string direccion, string ciudad, string estado, string codigoPostal, string pais) : base(nombre, email, pwd)
         {
@@ -34,6 +34,7 @@ namespace GestionMecanica.Core.Entidades
             Estado = estado;
             CodigoPostal = codigoPostal;
             Pais = pais;
+            Validar();
         }
 
         //TODO

@@ -8,10 +8,22 @@ namespace GestionMecanica.Core.Entidades
 {
     public class Administrador : Usuario
     {
+        //public Administrador()
+        //{
+        //}
+        public string Area { get; set; }
+
+        public Administrador(string nombre, string email, string pwd, string area) : base(nombre, email, pwd)
+        {
+
+        }
+
         //TODO
         public override string Rol => "Administrador";
 
-        public string Area { get; set; }
+
+
+
 
         public override void Validar()
         {

@@ -7,11 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\GestionMecanica.Core\GestionMecanica.Core\GestionMecanica.Core.csproj" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
+    <ProjectReference Include="..\GestionMecanica.Core\GestionMecanica.Core.csproj" />
+    <ProjectReference Include="..\GestionMecanica.Web\GestionMecanica.Web.csproj" />
   </ItemGroup>
 
 </Project>
