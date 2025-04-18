@@ -21,13 +21,12 @@ namespace GestionMecanica.Core.Entidades
             Nombre = nombre;            
         }
 
-        public bool Validar()
+        public void Validar()
         {
             if (string.IsNullOrEmpty(Nombre))
             {
                 throw new Exception("El nombre de la especialidad no puede estar vacío.");
             }
-            return true;
         }
     }
 }
