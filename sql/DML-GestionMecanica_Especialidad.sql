@@ -2,19 +2,19 @@
 GO
 INSERT INTO Especialidad(Nombre)
 VALUES(
-	"Motor"
+	'Motor'
 );
 INSERT INTO Especialidad(Nombre)
 VALUES(
-	"Freno"
+	'Freno'
 );
 INSERT INTO Especialidad(Nombre)
 VALUES(
-	"Electricidad"
+	'Electricidad'
 );
 INSERT INTO Especialidad(Nombre)
 VALUES(
-	"Transmision"
+	'Transmision'
 );
 
 GO

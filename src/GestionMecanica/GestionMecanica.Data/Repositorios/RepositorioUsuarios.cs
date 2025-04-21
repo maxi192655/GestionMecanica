@@ -70,18 +70,18 @@ namespace GestionMecanica.Data.Repositorios
                     {
                         if (reader.Read())
                         {
-                            return new Cliente
-                            {
-                                Id = reader.GetInt32("id"),
-                                Nombre = reader.GetString("nombre"),
-                                Email = reader.GetString("email"),
-                                Telefono = reader.IsDBNull("Telefono") ? null : reader.GetString("telefono"),
-                                Direccion = reader.IsDBNull("direccion") ? null : reader.GetString("direccion"),
-                                Ciudad = reader.IsDBNull("ciudad") ? null : reader.GetString("ciudad"),
-                                Estado = reader.IsDBNull("estado") ? null : reader.GetString("estado"),
-                                CodigoPostal = reader.IsDBNull("codigoPostal") ? null : reader.GetString("codigoPostal"),
-                                Pais = reader.IsDBNull("pais")? null: reader.GetString("pais")
-                            };
+                            var cliente = Cliente.CrearDesdeDB(
+                                reader.GetString("nombre"),
+                                reader.GetString("email"),
+                                reader.IsDBNull("telefono") ? null : reader.GetString("telefono"),
+                                reader.IsDBNull("direccion") ? null : reader.GetString("direccion"),
+                                reader.IsDBNull("ciudad") ? null : reader.GetString("ciudad"),
+                                reader.IsDBNull("estado") ? null : reader.GetString("estado"),
+                                reader.IsDBNull("codigoPostal") ? null : reader.GetString("codigoPostal"),
+                                reader.IsDBNull("pais") ? null : reader.GetString("pais")
+                                );
+                            cliente.Id = reader.GetInt32("id");
+                            return cliente;
                         }
                         return null;
                     }

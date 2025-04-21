@@ -2,7 +2,7 @@
 GO
 INSERT INTO Roles(Nombre)
 VALUES(
-	("Administrador"),("Mecanico"),("Cliente")
+	('Administrador'),('Mecanico'),('Cliente')
 	);
 GO
 --Crear un nuevo rol
@@ -12,9 +12,9 @@ AS
 BEGIN
 	INSERT INTO Roles(Nombre)
 	VALUES(@Nombre);
+
 END;
 GO
-
 CREATE PROCEDURE Sp_Roles_Delete
 	@ID INT,
 	@Nombre NVARCHAR(20)

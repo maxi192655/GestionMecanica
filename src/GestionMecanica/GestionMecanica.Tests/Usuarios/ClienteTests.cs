@@ -15,9 +15,12 @@ namespace GestionMecanica.Tests.Usuarios
             // Arrange
             var cliente = new Cliente("Juan Pérez", "juan@gmail.com","pwd1234", "987654321", "Calle Falsa 123", "Montepio","Pepex","11800","PaisFalso");
             // Act
-            
+
             // Assert
-            Assert.Equal(cliente.Nombre,cliente);
+            Assert.Equal("juan@gmail.com", cliente.Email);
+            Assert.Equal("pwd1234", cliente.Pwd); // si tenés esa propiedad
+            Assert.Equal("Calle Falsa 123", cliente.Direccion);
+
         }
     }
 }
