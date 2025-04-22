@@ -1,22 +1,11 @@
 ﻿USE GestionMecanica;
 GO
 INSERT INTO Especialidad(Nombre)
-VALUES(
-	'Motor'
-);
-INSERT INTO Especialidad(Nombre)
-VALUES(
-	'Freno'
-);
-INSERT INTO Especialidad(Nombre)
-VALUES(
-	'Electricidad'
-);
-INSERT INTO Especialidad(Nombre)
-VALUES(
-	'Transmision'
-);
-
+VALUES
+	('Motor'),
+	('Freno'),
+	('Electricidad'),
+	('Transmision');
 GO
 
 CREATE PROCEDURE SP_Especialidad_Create
@@ -49,3 +38,4 @@ GO
 --GO
 
 
+USE MASTER;

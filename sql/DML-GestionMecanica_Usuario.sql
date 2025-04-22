@@ -6,9 +6,9 @@ CREATE PROCEDURE Sp_Usuario_Create
 	@Nombre VARCHAR(100),
 	@Email VARCHAR(100),
 	@Pwd VARCHAR(100),
-	@Rol NVARCHAR(20),
+	@RolID INT,
 	@Telefono NVARCHAR(20) = NULL,
-	@Diereccion NVARCHAR(200) = NULL,
+	@Direccion NVARCHAR(200) = NULL,
 	@Ciudad NVARCHAR(100) = NULL,
 	@Estado NVARCHAR(100) = NULL,
 	@CodigoPostal NVARCHAR(20) = NULL,
@@ -17,11 +17,11 @@ CREATE PROCEDURE Sp_Usuario_Create
 	@EspecialidadID INT = NULL
 AS
 BEGIN 
-	INSERT INTO Usuario (Nombre, Email, Pwd, Rol, Telefono, Diereccion, Ciudad, Estado, CodigoPostal, Pais, Area, EspecialidadID)
+	INSERT INTO Usuario (Nombre, Email, Pwd, RolID, Telefono, Direccion, Ciudad, Estado, CodigoPostal, Pais, Area, EspecialidadID)
 	VALUES (
-		@Nombre, @Email,@Pwd,@Rol, 
+		@Nombre, @Email,@Pwd,@RolID, 
 		@Telefono, @Direccion, @Ciudad, @Estado, 
-		@CodigoPostal, @Pais, @Area,@Especialidad
+		@CodigoPostal, @Pais, @Area,@EspecialidadID
 	)
 END;
 GO
@@ -32,9 +32,9 @@ CREATE PROCEDURE Sp_Usuario_Update
 	@Nombre VARCHAR(100),
 	@Email VARCHAR(100),
 	@Pwd VARCHAR(100),
-	@Rol NVARCHAR(20),
+	@RolId INT,
 	@Telefono NVARCHAR(20) = NULL,
-	@Diereccion NVARCHAR(200) = NULL,
+	@Direccion NVARCHAR(200) = NULL,
 	@Ciudad NVARCHAR(100) = NULL,
 	@Estado NVARCHAR(100) = NULL,
 	@CodigoPostal NVARCHAR(20) = NULL,
@@ -49,7 +49,7 @@ BEGIN
 		Nombre = @Nombre,
 		Email = @Email,
 		Pwd = @Pwd,
-		Rol = @Rol,
+		RolID = @RolId,
 		Telefono = @Telefono,
 		Direccion = @Direccion,
 		Ciudad = @Ciudad,
@@ -115,10 +115,10 @@ GO
 
 --Listar usuario por Rol
 CREATE PROCEDURE Sp_Usuario_GetByRol
-	@Rol NVARCHAR(20)
+	@RolID int
 AS
 BEGIN
-	SELECT * FROM Usuario WHERE Rol = @Rol
+	SELECT * FROM Usuario WHERE RolID = @RolID
 END;
 GO
 
@@ -130,3 +130,15 @@ BEGIN
 	SELECT * FROM Usuario WHERE EspecialidadID = @EspecialidadID
 END;
 GO
+
+
+CREATE PROCEDURE Sp_Roles_GetIDByNombre
+    @Nombre NVARCHAR(50)
+AS
+BEGIN
+    SELECT Id FROM Roles WHERE Nombre = @Nombre;
+END;
+GO
+
+
+USE master;

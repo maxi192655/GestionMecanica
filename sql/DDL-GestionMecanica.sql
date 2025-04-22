@@ -33,7 +33,7 @@ CREATE TABLE Usuario (
 
 	--Cliente
 	Telefono NVARCHAR(20) NULL,
-	Diereccion NVARCHAR(200)NULL,
+	Direccion NVARCHAR(200)NULL,
 	Ciudad NVARCHAR(100)NULL,
 	Estado NVARCHAR(100)NULL,
 	CodigoPostal NVARCHAR(20)NULL,
@@ -51,7 +51,6 @@ CREATE TABLE Usuario (
 	
 	CONSTRAINT PK_Usuario PRIMARY KEY (ID)
 	CONSTRAINT FK_Usuarios_Roles FOREIGN KEY (RolID) REFERENCES Roles(Id),
-	CONSTRAINT chk_rol CHECK (Rol IN ('Cliente', 'Administrador', 'Mecanico')),
 	CONSTRAINT FK_Especialidad_Mecanico FOREIGN KEY (EspecialidadID) REFERENCES Especialidad(ID),
 );
 GO

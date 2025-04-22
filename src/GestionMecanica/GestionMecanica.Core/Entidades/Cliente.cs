@@ -41,7 +41,7 @@ namespace GestionMecanica.Core.Entidades
         //Constructor sin PWD.
         public static Cliente CrearDesdeDB(string nombre, string email, string telefono, string direccion, string ciudad, string estado, string codigoPostal, string pais)
         {
-            return new Cliente(nombre, email, "", telefono, direccion, ciudad, estado, codigoPostal, pais);
+            return new Cliente(nombre, email,null, telefono, direccion, ciudad, estado, codigoPostal, pais);
         }
 
 

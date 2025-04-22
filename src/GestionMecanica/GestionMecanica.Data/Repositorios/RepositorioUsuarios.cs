@@ -12,38 +12,33 @@ namespace GestionMecanica.Data.Repositorios
 {
     public class RepositorioUsuarios
     {
-        private readonly SqlConnection _connection;
-        private bool _disposed = false;
-
-        public RepositorioUsuarios()
-        {
-            _connection = Conexion.GetOpenConnection();
-        }
-
         public void InsertarCliente(Cliente cliente)
         {
             if(cliente == null)
                 throw new ArgumentNullException(nameof(cliente));
 
-            const string query = @"
-                INSERT INTO Usuario (nombre, email, pwd, rol, telefono, direccion, ciudad, estado,codigoPostal, Pais)
-                VALUES                    
-                (@nombre, @email, @pwd, @rol, @telefono, @direccion, @ciudad, @estado, @codigoPostal, @pais)";
-            
+
             try
             {
-                using (var command = new SqlCommand(query,_connection))
+                int RolId = GetRolByname(cliente.Rol);
+
+                using (var connection = Conexion.GetOpenConnection())
+                using (var command = new SqlCommand("Sp_Usuario_Create", connection))
                 {
+                    command.CommandType = CommandType.StoredProcedure;
+
                     command.Parameters.AddWithValue("@nombre", cliente.Nombre);
                     command.Parameters.AddWithValue("@email", cliente.Email);
                     command.Parameters.AddWithValue("@pwd", cliente.Pwd);
-                    command.Parameters.AddWithValue("@rol", cliente.Rol);
-                    command.Parameters.AddWithValue("@telefono", cliente.Telefono);
-                    command.Parameters.AddWithValue("@direccion", cliente.Direccion);
-                    command.Parameters.AddWithValue("@ciudad", cliente.Ciudad);
-                    command.Parameters.AddWithValue("@estado", cliente.Estado);
-                    command.Parameters.AddWithValue("@codigoPostal", cliente.CodigoPostal);
-                    command.Parameters.AddWithValue("@pais", cliente.Pais);
+                    command.Parameters.AddWithValue("@rol", RolId);
+                    command.Parameters.AddWithValue("@telefono", cliente.Telefono ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@direccion", cliente.Direccion ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@ciudad", cliente.Ciudad ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@estado", cliente.Estado ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@codigoPostal", cliente.CodigoPostal ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@pais", cliente.Pais ?? (object)DBNull.Value);
+                    
+                    
                     command.ExecuteNonQuery();
                 }
             }
@@ -53,18 +48,48 @@ namespace GestionMecanica.Data.Repositorios
                 throw new Exception("Error al insertar el cliente en la base de datos",ex);
             }
         }
-        public Cliente ObtenerPorMail(string email)
-        {
-            if (string.IsNullOrWhiteSpace(email))
-                throw new ArgumentException("El email no puede estar vacio", nameof(email));
 
-            const string query = @"SELECT id, nombre, email, rol, telefono, direccion, 
-                        ciudad, estado, codigoPostal, pais FROM Usuario WHERE email = @email";
+       
+        
+        public int GetRolByname(string nombreRol)
+        {
+            if(string.IsNullOrWhiteSpace(nombreRol))
+                throw new ArgumentException("El nombre del rol no puede estar vacio", nameof(nombreRol));
 
             try
             {
-                using (var command = new SqlCommand(query,_connection))
+                using(var connection = Conexion.GetOpenConnection())
+                using (var command = new SqlCommand("Sp_Roles_GetIDByNombre", connection))
                 {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@nombre", nombreRol);
+                    
+
+                    var result = command.ExecuteScalar();
+
+
+                    if (result != null)
+                        return Convert.ToInt32(result);
+                    else
+                        throw new Exception($"No se encontro el rol de nombre: {nombreRol}");
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Error al obtener el ID del rol", ex);
+            }
+        }
+
+        public Cliente GetClientePorMail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                throw new ArgumentException("El email no puede estar vacio", nameof(email));
+            try
+            {
+                using (var connection = Conexion.GetOpenConnection())
+                using (var command = new SqlCommand("Sp_Usuario_GetByEmail", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@email", email);
                     using (var reader = command.ExecuteReader())
                     {
@@ -92,6 +117,5 @@ namespace GestionMecanica.Data.Repositorios
                 throw new Exception("Error al obtener cliente por email", ex);
             }
         }
-
     }
 }

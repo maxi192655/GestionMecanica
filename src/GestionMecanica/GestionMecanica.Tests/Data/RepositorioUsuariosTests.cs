@@ -16,7 +16,7 @@ namespace GestionMecanica.Tests.Data
             // Arrange
             var repositorio = new RepositorioUsuarios();
             var cliente = new Cliente(
-                nombre: "Test Cliente",
+                nombre: "Test Clien1te",
                 email: "test_cliente@example.com",
                 pwd: "pwd1234",
                 telefono: "123456789",
@@ -28,11 +28,11 @@ namespace GestionMecanica.Tests.Data
             );
 
             repositorio.InsertarCliente(cliente);
-            var clienteObtenido = repositorio.ObtenerPorMail(cliente.Email);
+            var clienteObtenido = repositorio.GetClientePorMail(cliente.Email);
 
             // Assert
             Assert.NotNull(clienteObtenido);
-            Assert.Equal("Test Cliente", clienteObtenido.Nombre);
+            Assert.Equal("Test Clien1te", clienteObtenido.Nombre);
             Assert.Equal("test_cliente@example.com", clienteObtenido.Email);
             Assert.Equal("123456789", clienteObtenido.Telefono);
             Assert.Equal("Calle Falsa 123", clienteObtenido.Direccion);
