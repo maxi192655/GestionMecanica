@@ -30,7 +30,7 @@ namespace GestionMecanica.Data.Repositorios
                     command.Parameters.AddWithValue("@nombre", cliente.Nombre);
                     command.Parameters.AddWithValue("@email", cliente.Email);
                     command.Parameters.AddWithValue("@pwd", cliente.Pwd);
-                    command.Parameters.AddWithValue("@rol", RolId);
+                    command.Parameters.AddWithValue("@RolID", RolId);
                     command.Parameters.AddWithValue("@telefono", cliente.Telefono ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@direccion", cliente.Direccion ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@ciudad", cliente.Ciudad ?? (object)DBNull.Value);

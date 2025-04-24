@@ -1,5 +1,5 @@
-﻿USE GestionMecanica;
-GO
+﻿--USE GestionMecanica;
+--GO
 
 --Insercion de usuario
 CREATE PROCEDURE Sp_Usuario_Create
@@ -141,4 +141,4 @@ END;
 GO
 
 
-USE master;
+--USE master;

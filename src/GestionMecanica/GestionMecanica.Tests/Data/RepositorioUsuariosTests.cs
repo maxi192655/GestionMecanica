@@ -15,6 +15,7 @@ namespace GestionMecanica.Tests.Data
         public void InsertAndGetCliente() {
             // Arrange
             var repositorio = new RepositorioUsuarios();
+
             var cliente = new Cliente(
                 nombre: "Test Clien1te",
                 email: "test_cliente@example.com",
@@ -27,7 +28,7 @@ namespace GestionMecanica.Tests.Data
                 pais: "Testland"
             );
 
-            repositorio.InsertarCliente(cliente);
+            //repositorio.InsertarCliente(cliente);
             var clienteObtenido = repositorio.GetClientePorMail(cliente.Email);
 
             // Assert

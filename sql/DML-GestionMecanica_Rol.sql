@@ -1,10 +1,10 @@
-﻿USE GestionMecanica;
-GO
+﻿--USE GestionMecanica;
+--GO
 INSERT INTO Roles(Nombre)
 VALUES
+	('Cliente'),
 	('Administrador'),
-	('Mecanico'),
-	('Cliente');
+	('Mecanico');
 GO
 --Crear un nuevo rol
 CREATE PROCEDURE Sp_Roles_Create
@@ -25,4 +25,4 @@ BEGIN
 	WHERE ID = @ID;
 END;
 GO
-USE master;
+--USE master;

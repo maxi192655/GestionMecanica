@@ -8,9 +8,9 @@ namespace GestionMecanica.Core.Entidades
 {
     public class Mecanico : Usuario
     {
-        public Mecanico()
-        {
-        }
+        //public Mecanico()
+        //{
+        //}
 
         public Mecanico(string nombre, string email, string pwd, Especialidad especialidad) : base(nombre, email, pwd)
         {

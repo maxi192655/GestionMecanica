@@ -27,7 +27,12 @@ namespace GestionMecanica.Core.Entidades
         //}
 
         //Constructor para registro de cliente.
-        public Cliente(string nombre, string email, string pwd, string telefono, string direccion, string ciudad, string estado, string codigoPostal, string pais) : base(nombre, email, pwd)
+        public Cliente(
+            string nombre, string email, string pwd, 
+            string telefono, string direccion, string ciudad, 
+            string estado, string codigoPostal, string pais, 
+            bool validar = true
+            ) : base(nombre, email, pwd)
         {
             Telefono = telefono;
             Direccion = direccion;
@@ -35,13 +40,15 @@ namespace GestionMecanica.Core.Entidades
             Estado = estado;
             CodigoPostal = codigoPostal;
             Pais = pais;
-            Validar();
+
+            if (validar)
+                Validar();
         }
 
         //Constructor sin PWD.
         public static Cliente CrearDesdeDB(string nombre, string email, string telefono, string direccion, string ciudad, string estado, string codigoPostal, string pais)
         {
-            return new Cliente(nombre, email,null, telefono, direccion, ciudad, estado, codigoPostal, pais);
+            return new Cliente(nombre, email,null, telefono, direccion, ciudad, estado, codigoPostal, pais, validar: false);
         }
 
 
@@ -52,7 +59,10 @@ namespace GestionMecanica.Core.Entidades
         //Validaciones
         public override void Validar()
         {
+            //Validaciones de la clase base.
             base.Validar();
+
+            //Validaciones de la clase hija.
             ValidarTelefono();
             ValidarDireccion();
             ValidarCiudad();

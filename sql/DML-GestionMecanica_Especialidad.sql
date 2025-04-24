@@ -1,5 +1,5 @@
-﻿USE GestionMecanica;
-GO
+﻿--USE GestionMecanica;
+--GO
 INSERT INTO Especialidad(Nombre)
 VALUES
 	('Motor'),
@@ -38,4 +38,4 @@ GO
 --GO
 
 
-USE MASTER;
+--USE MASTER;

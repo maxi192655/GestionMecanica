@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Hosting.Server;
 
 namespace GestionMecanica.Data
 {
@@ -12,7 +13,9 @@ namespace GestionMecanica.Data
     {
 
         //Cadena de conexión a la base de datos privada y readonly para seguridad
-        private static readonly string _connectionString = "Server=MSI\\SQLEXPRESS;Database=GestionMecanica;Integrated Security=True;";
+        //private static readonly string _connectionString = "Server=MSI\\SQLEXPRESS;Database=GestionMecanica;Integrated Security=True;";
+        private static readonly string _connectionString = "Server=tcp:servidormecanica2025.database.windows.net,1433;Initial Catalog=GestionMecanicaDB;Persist Security Info=False;User ID=adminsql;Password=GestionM3canica;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;\r\n";
+
 
         //Propiedad publica para acceder a la cadena de conexion
         public static string ConnectionString => _connectionString;

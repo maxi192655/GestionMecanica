@@ -1,12 +1,12 @@
-USE master
-GO
-IF DB_ID('GestionMecanica') IS NOT NULL
-	DROP DATABASE GestionMecanica;
-GO
-CREATE DATABASE GestionMecanica
-GO
+--USE master
+--GO
+--IF DB_ID('GestionMecanica') IS NOT NULL
+--	DROP DATABASE GestionMecanicaDB;
+--GO
+--CREATE DATABASE GestionMecanicaDB
+--GO
 
-USE GestionMecanica;
+--USE GestionMecanicaDB;
 
 CREATE TABLE Especialidad(
 		ID int IDENTITY(1,1) NOT NULL,
