@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionMecanica.Web", "Gest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionMecanica.Tests", "GestionMecanica.Tests\GestionMecanica.Tests.csproj", "{0F492391-0F0F-4E0A-ABC9-810E0F88392C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionMecanica.App", "GestionMecanica.App\GestionMecanica.App.csproj", "{0E273C9E-A027-4DF4-AEF5-84D3F3E93F0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,18 @@ Global
 		{0F492391-0F0F-4E0A-ABC9-810E0F88392C}.Release|x64.Build.0 = Release|Any CPU
 		{0F492391-0F0F-4E0A-ABC9-810E0F88392C}.Release|x86.ActiveCfg = Release|Any CPU
 		{0F492391-0F0F-4E0A-ABC9-810E0F88392C}.Release|x86.Build.0 = Release|Any CPU
+		{0E273C9E-A027-4DF4-AEF5-84D3F3E93F0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E273C9E-A027-4DF4-AEF5-84D3F3E93F0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E273C9E-A027-4DF4-AEF5-84D3F3E93F0C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0E273C9E-A027-4DF4-AEF5-84D3F3E93F0C}.Debug|x64.Build.0 = Debug|Any CPU
+		{0E273C9E-A027-4DF4-AEF5-84D3F3E93F0C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0E273C9E-A027-4DF4-AEF5-84D3F3E93F0C}.Debug|x86.Build.0 = Debug|Any CPU
+		{0E273C9E-A027-4DF4-AEF5-84D3F3E93F0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E273C9E-A027-4DF4-AEF5-84D3F3E93F0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E273C9E-A027-4DF4-AEF5-84D3F3E93F0C}.Release|x64.ActiveCfg = Release|Any CPU
+		{0E273C9E-A027-4DF4-AEF5-84D3F3E93F0C}.Release|x64.Build.0 = Release|Any CPU
+		{0E273C9E-A027-4DF4-AEF5-84D3F3E93F0C}.Release|x86.ActiveCfg = Release|Any CPU
+		{0E273C9E-A027-4DF4-AEF5-84D3F3E93F0C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

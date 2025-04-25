@@ -11,7 +11,6 @@ namespace GestionMecanica.Core.Entidades
         //TODO
         public override string Rol => "Cliente";
 
-
         public string Telefono { get; set; }
         public string Direccion { get; set; }
         public string Ciudad { get; set; }
@@ -22,9 +21,6 @@ namespace GestionMecanica.Core.Entidades
         public List<Vehiculo> _Vehiculos { get; set; } = new();
 
         #region Constructores
-        //public Cliente()
-        //{   
-        //}
 
         //Constructor para registro de cliente.
         public Cliente(
@@ -41,6 +37,7 @@ namespace GestionMecanica.Core.Entidades
             CodigoPostal = codigoPostal;
             Pais = pais;
 
+            //Validar si se requiere validar.
             if (validar)
                 Validar();
         }
@@ -51,9 +48,6 @@ namespace GestionMecanica.Core.Entidades
             return new Cliente(nombre, email,null, telefono, direccion, ciudad, estado, codigoPostal, pais, validar: false);
         }
 
-
-        //TODO
-        //public override string Rol => "Cliente";
         #endregion
         #region Validaciones
         //Validaciones
@@ -103,4 +97,3 @@ namespace GestionMecanica.Core.Entidades
         #endregion
     }
 }
-

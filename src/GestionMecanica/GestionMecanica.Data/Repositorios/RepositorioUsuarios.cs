@@ -17,7 +17,6 @@ namespace GestionMecanica.Data.Repositorios
             if(cliente == null)
                 throw new ArgumentNullException(nameof(cliente));
 
-
             try
             {
                 int RolId = GetRolByname(cliente.Rol);
@@ -49,8 +48,39 @@ namespace GestionMecanica.Data.Repositorios
             }
         }
 
-       
-        
+        public void InsertarMecanico(Mecanico mecanico)
+        {
+            if(mecanico == null)
+                throw new ArgumentNullException(nameof(mecanico));
+            try
+            {
+                int RolId = GetRolByname(mecanico.Rol);
+
+                using (var connection = Conexion.GetOpenConnection())
+                using (var command = new SqlCommand("Sp_Usuario_Create", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@nombre", mecanico.Nombre);
+                    command.Parameters.AddWithValue("@email", mecanico.Email);
+                    command.Parameters.AddWithValue("@pwd", mecanico.Pwd);
+                    command.Parameters.AddWithValue("@RolID", RolId);
+                    command.Parameters.AddWithValue("@EspecialidadID", mecanico.Especialidad.Id);
+
+
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Error al insertar el mecanico en la base de datos");
+            }
+        }
+
+        public void InsertarAdministrador(Administrador administrador)
+        {
+            throw new NotImplementedException();
+        }
+
         public int GetRolByname(string nombreRol)
         {
             if(string.IsNullOrWhiteSpace(nombreRol))
@@ -117,5 +147,27 @@ namespace GestionMecanica.Data.Repositorios
                 throw new Exception("Error al obtener cliente por email", ex);
             }
         }
+
+        public bool CheckEmailExists(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                throw new ArgumentException("El email no puede estar vacio", nameof(email));
+            try
+            {
+                using (var connection = Conexion.GetOpenConnection())
+                using (var command = new SqlCommand("Sp_Usuario_Exists", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@email", email);
+                    var result = command.ExecuteScalar();
+                    return Convert.ToBoolean(result);
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Error al verificar si el email existe", ex);
+            }
+        }
+
     }
 }

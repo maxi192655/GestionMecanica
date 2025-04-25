@@ -1,6 +1,7 @@
 ﻿--USE GestionMecanica;
 --GO
-
+CREATE UNIQUE INDEX IX_Usuario_Email ON Usuario(Email);
+GO
 --Insercion de usuario
 CREATE PROCEDURE Sp_Usuario_Create
 	@Nombre VARCHAR(100),
@@ -141,4 +142,15 @@ END;
 GO
 
 
+CREATE PROCEDURE Sp_Usuario_Exists
+	@Email VARCHAR(100)
+AS
+BEGIN
+	IF EXISTS (SELECT 1 FROM Usuario WHERE Email = @Email)
+	BEGIN
+		RAISERROR('El usuario ya existe.',16,1)
+		RETURN
+	END
+END;
+GO
 --USE master;

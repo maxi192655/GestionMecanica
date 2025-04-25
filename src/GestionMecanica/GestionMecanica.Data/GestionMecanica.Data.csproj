@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GestionMecanica.Core\GestionMecanica.Core.csproj" />
-    <ProjectReference Include="..\GestionMecanica.Web\GestionMecanica.Web.csproj" />
   </ItemGroup>
 
 </Project>
