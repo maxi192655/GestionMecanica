@@ -1,4 +1,6 @@
-﻿using GestionMecanica.Core.Entidades;
+﻿using AutoMapper;
+using GestionMecanica.Core.DTOs;
+using GestionMecanica.Core.Entidades;
 using GestionMecanica.Data.Repositorios;
 using System;
 using System.Collections.Generic;
@@ -10,39 +12,51 @@ namespace GestionMecanica.App
 {
     public class SistemaUsuario
     {
-        private readonly RepositorioUsuarios _repositorioUsuarios;
+        private readonly RepositorioUsuarios _repositorio;
+        private readonly IMapper _mapper;
 
-        public SistemaUsuario(RepositorioUsuarios repositorioUsuarios)
+        public SistemaUsuario(RepositorioUsuarios repositorioUsuarios, IMapper mapper)
         {
-            _repositorioUsuarios = repositorioUsuarios;
+            _repositorio= repositorioUsuarios;
+            _mapper = mapper;
+        }
+
+
+        public ClienteDTO ObtenerPerfilCliente(string email)
+        {
+            var cliente = _repositorio.GetClientePorMail(email);
+            if(cliente == null)
+                throw new Exception("Cliente no encontrado");
+
+            return _mapper.Map<ClienteDTO>(cliente);
         }
 
         public void AltaCliente(Cliente cliente)
         {
-            if(_repositorioUsuarios.CheckEmailExists(cliente.Email))
+            if(_repositorio.CheckEmailExists(cliente.Email))
             {
                 throw new Exception("El email ya está registrado.");
             }
 
-            _repositorioUsuarios.InsertarCliente(cliente);
+            _repositorio.InsertarCliente(cliente);
         }
 
         public void AltaMecanico(Mecanico mecanico)
         {
-            if (_repositorioUsuarios.CheckEmailExists(mecanico.Email))
+            if (_repositorio.CheckEmailExists(mecanico.Email))
             {
                 throw new Exception("El email ya está registrado.");
             }
-            _repositorioUsuarios.InsertarMecanico(mecanico);
+            _repositorio.InsertarMecanico(mecanico);
         }
 
         public void AltaAdministrador(Administrador administrador)
         {
-            if (_repositorioUsuarios.CheckEmailExists(administrador.Email))
+            if (_repositorio.CheckEmailExists(administrador.Email))
             {
                 throw new Exception("El email ya está registrado.");
             }
-            _repositorioUsuarios.InsertarAdministrador(administrador);
+            _repositorio.InsertarAdministrador(administrador);
         }
 
 
@@ -50,7 +64,7 @@ namespace GestionMecanica.App
         {
             if (string.IsNullOrWhiteSpace(email))
                 throw new ArgumentException("El email no puede estar vacio", nameof(email));
-            var usuario = _repositorioUsuarios.GetClientePorMail(email);
+            var usuario = _repositorio.GetClientePorMail(email);
             if (usuario == null)
                 throw new Exception("Usuario no encontrado");
             return usuario;

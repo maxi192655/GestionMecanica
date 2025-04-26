@@ -1,3 +1,5 @@
+using GestionMecanica.App;
+
 namespace GestionMecanica.Web
 {
     public class Program
@@ -8,6 +10,7 @@ namespace GestionMecanica.Web
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             var app = builder.Build();
 
